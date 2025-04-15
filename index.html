@@ -59,6 +59,11 @@
             const daysPassed = Math.round((currentDate - lastDate) / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
             const consperday = difference / daysPassed;
 
+            // Ensure negative values are replaced with "N/A"
+            difference = difference < 0 ? "N/A" : difference;
+            daysPassed = daysPassed < 0 ? "N/A" : daysPassed;
+            consperday = consperday < 0 ? "N/A" : consperday.toFixed(2);
+
             // Display results
               document.getElementById('difference').textContent = `Current cycle consumption (kWh): ${difference}`;
             document.getElementById('daysPassed').textContent = `Current cycle number of days: ${daysPassed}`;
