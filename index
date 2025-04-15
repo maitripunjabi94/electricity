@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, button {
+            margin-bottom: 15px;
+        }
+        #results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reading Calculator</h1>
+    <form id="calculatorForm">
+        <label for="lastReading">Last Reading:</label>
+        <input type="number" id="lastReading" required>
+        
+        <label for="lastDate">Last Reading Date:</label>
+        <input type="date" id="lastDate" required>
+        
+        <label for="currentReading">Current Reading:</label>
+        <input type="number" id="currentReading" required>
+        
+        <label for="currentDate">Current Reading Date:</label>
+        <input type="date" id="currentDate" required>
+        
+        <button type="button" onclick="calculateMeasures()">Calculate</button>
+    </form>
+    
+    <div id="results">
+        <h2>Results:</h2>
+        <p id="difference"></p>
+        <p id="daysPassed"></p>
+        <p id="consperday"></p>
+    </div>
+    
+    <script>
+        function calculateMeasures() {
+            const lastReading = parseFloat(document.getElementById('lastReading').value);
+            const lastDate = new Date(document.getElementById('lastDate').value);
+            const currentReading = parseFloat(document.getElementById('currentReading').value);
+            const currentDate = new Date(document.getElementById('currentDate').value);
+            
+            // Calculate the measures
+            const difference = currentReading - lastReading;
+            const daysPassed = Math.round((currentDate - lastDate) / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
+            const consperday = difference / daysPassed;
+
+            // Display results
+            document.getElementById('difference').textContent = `Difference (Current Reading - Last Reading): ${difference}`;
+            document.getElementById('daysPassed').textContent = `Days Passed (Current Date - Last Date): ${daysPassed}`;
+            document.getElementById('consperday').textContent = `Consumption Per Day (Difference / Days Passed): ${consperday.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
