@@ -60,9 +60,9 @@
             const consperday = difference / daysPassed;
 
             // Display results
-            document.getElementById('difference').textContent = `Difference (Current Reading - Last Reading): ${difference}`;
-            document.getElementById('daysPassed').textContent = `Days Passed (Current Date - Last Date): ${daysPassed}`;
-            document.getElementById('consperday').textContent = `Consumption Per Day (Difference / Days Passed): ${consperday.toFixed(2)}`;
+            document.getElementById('difference').textContent = `Consumption in current cycle: ${difference}`;
+            document.getElementById('daysPassed').textContent = `Days in current cycle: ${daysPassed}`;
+            document.getElementById('consperday').textContent = `Consumption Per Day for current cycle: ${consperday.toFixed(2)}`;
         }
     </script>
 </body>
