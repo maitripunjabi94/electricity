@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reading Calculator</title>
+    <title>Current Cycle Consumption Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,18 +23,18 @@
     </style>
 </head>
 <body>
-    <h1>Reading Calculator</h1>
+    <h1>Current Cycle Consumption Calculator</h1>
     <form id="calculatorForm">
-        <label for="lastReading">Last Reading:</label>
+        <label for="lastReading">Final reading on last bill:</label>
         <input type="number" id="lastReading" required>
         
-        <label for="lastDate">Last Reading Date:</label>
+        <label for="lastDate">Date of last bill:</label>
         <input type="date" id="lastDate" required>
         
-        <label for="currentReading">Current Reading:</label>
+        <label for="currentReading">Current reading:</label>
         <input type="number" id="currentReading" required>
         
-        <label for="currentDate">Current Reading Date:</label>
+        <label for="currentDate">Current reading date:</label>
         <input type="date" id="currentDate" required>
         
         <button type="button" onclick="calculateMeasures()">Calculate</button>
@@ -45,9 +45,23 @@
         <p id="difference"></p>
         <p id="daysPassed"></p>
         <p id="consperday"></p>
+        <p id="formattedLastDate"></p>
+        <p id="formattedCurrentDate"></p>
     </div>
     
     <script>
+        function formatDate(date) {
+            let day = date.getDate();
+            let month = date.getMonth() + 1; // Months are zero-based
+            let year = date.getFullYear();
+
+            // Ensure two-digit format for day and month
+            day = day < 10 ? '0' + day : day;
+            month = month < 10 ? '0' + month : month;
+
+            return `${day}/${month}/${year}`;
+        }
+
         function calculateMeasures() {
             const lastReading = parseFloat(document.getElementById('lastReading').value);
             const lastDate = new Date(document.getElementById('lastDate').value);
@@ -59,10 +73,16 @@
             const daysPassed = Math.round((currentDate - lastDate) / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
             const consperday = difference / daysPassed;
 
+            // Format the dates before displaying
+            const formattedLastDate = formatDate(lastDate);
+            const formattedCurrentDate = formatDate(currentDate);
+
             // Display results
-            document.getElementById('difference').textContent = `Difference (Current Reading - Last Reading): ${difference}`;
-            document.getElementById('daysPassed').textContent = `Days Passed (Current Date - Last Date): ${daysPassed}`;
-            document.getElementById('consperday').textContent = `Consumption Per Day (Difference / Days Passed): ${consperday.toFixed(2)}`;
+            document.getElementById('difference').textContent = `Current cycle consumption (kWh): ${difference}`;
+            document.getElementById('daysPassed').textContent = `Current cycle number of days: ${daysPassed}`;
+            document.getElementById('consperday').textContent = `Current cycle consumption Per Day: ${consperday.toFixed(2)}`;
+            document.getElementById('formattedLastDate').textContent = `Formatted Last Bill Date: ${formattedLastDate}`;
+            document.getElementById('formattedCurrentDate').textContent = `Formatted Current Reading Date: ${formattedCurrentDate}`;
         }
     </script>
 </body>
