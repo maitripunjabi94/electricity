@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RPV6FP5JEG"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RPV6FP5JEG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-  gtag('config', 'G-RPV6FP5JEG');
-</script>
-    
+        gtag('config', 'G-RPV6FP5JEG');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Current cycle consumption calculator</title>
@@ -37,44 +37,47 @@
     <form id="calculatorForm">
         <label for="lastReading">Final reading on last bill:</label>
         <input type="number" id="lastReading" required>
-        
+
         <label for="lastDate">Date of last bill:</label>
         <input type="date" id="lastDate" required>
-        
+
         <label for="currentReading">Current reading:</label>
         <input type="number" id="currentReading" required>
-        
+
         <label for="currentDate">Current reading date:</label>
         <input type="date" id="currentDate" required>
-        
+
         <button type="button" onclick="calculateMeasures()">Calculate</button>
     </form>
-    
+
     <div id="results">
         <h2>Results:</h2>
         <p id="difference"></p>
         <p id="daysPassed"></p>
         <p id="consperday"></p>
     </div>
-    
+
     <script>
         function calculateMeasures() {
             const lastReading = parseFloat(document.getElementById('lastReading').value);
-            const lastDate = new Date(document.getElementById('lastDate').value);
+            const lastDate = document.getElementById('lastDate').value;
             const currentReading = parseFloat(document.getElementById('currentReading').value);
-            const currentDate = new Date(document.getElementById('currentDate').value);
-            
-            // Calculate the measures
+            const currentDate = document.getElementById('currentDate').value;
+
+            // Fire GA4 event with all inputs
+            gtag('event', 'calculate_clicked', {
+                last_reading: lastReading,
+                last_date: lastDate,
+                current_reading: currentReading,
+                current_date: currentDate
+            });
+
+            // Calculate results
+            const date1 = new Date(lastDate);
+            const date2 = new Date(currentDate);
             const difference = currentReading - lastReading;
-            const daysPassed = Math.round((currentDate - lastDate) / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
+            const daysPassed = Math.round((date2 - date1) / (1000 * 60 * 60 * 24));
             const consperday = difference / daysPassed;
 
-
             // Display results
-              document.getElementById('difference').textContent = `Current cycle consumption (kWh): ${difference}`;
-            document.getElementById('daysPassed').textContent = `Current cycle number of days: ${daysPassed}`;
-            document.getElementById('consperday').textContent = `Current cycle consumption Per Day: ${consperday.toFixed(2)}`;
-        }
-    </script>
-</body>
-</html>
+            document.getElementById('difference').textContent = `Current
