@@ -80,4 +80,10 @@
             const consperday = difference / daysPassed;
 
             // Display results
-            document.getElementById('difference').textContent = `Current
+            document.getElementById('difference').textContent = `Current cycle consumption (kWh): ${difference}`;
+            document.getElementById('daysPassed').textContent = `Current cycle number of days: ${daysPassed}`;
+            document.getElementById('consperday').textContent = `Current cycle consumption Per Day: ${consperday.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
