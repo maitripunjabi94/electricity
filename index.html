@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <!-- Google tag (gtag.js) -->
+
+   <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RPV6FP5JEG"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -11,10 +12,9 @@
         gtag('config', 'G-RPV6FP5JEG');
     </script>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Consumption Tracker</title>
-    <style>
+
+  <title>Smart Consumption Tracker</title>
+  <style>
     body {
       font-family: Arial, sans-serif;
       margin: 20px auto;
@@ -123,7 +123,6 @@
 <body>
   <h2>Smart Consumption Tracker</h2>
 
-    
   <label for="lastDate">Last Billing Date:</label>
   <input type="date" id="lastDate">
 
@@ -175,14 +174,6 @@
   const currentReading = parseFloat(document.getElementById("currentReading").value);
   const resultBox = document.getElementById("result");
 
-            // Fire GA4 event with all inputs
-            gtag('event', 'calculate_clicked', {
-                last_reading: lastReading,
-                last_date: lastDate,
-                current_reading: currentReading,
-                current_date: currentDate
-            });
-       
   // Reset field borders
   ["lastDate", "currentDate", "lastReading", "currentReading"].forEach(id => {
     document.getElementById(id).style.border = "";
@@ -292,6 +283,8 @@
       return `${day}-${month}-${year}`;
     }
 
+
+
     function resetHistory() {
       localStorage.removeItem("calcHistory");
       localStorage.removeItem("lastDate");
@@ -310,4 +303,3 @@
   </script>
 </body>
 </html> 
-
