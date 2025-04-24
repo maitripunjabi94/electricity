@@ -232,6 +232,14 @@
       <strong>Average Daily Consumption:</strong> ${dailyConsumption} units/day
     </div>`;
 
+       // Fire GA4 event with all inputs
+            gtag('event', 'calculate_clicked', {
+                last_reading: lastReading,
+                last_date: lastDate,
+                current_reading: currentReading,
+                current_date: currentDate
+            });
+
   const entry = {
     lastDate: formatDate(lastDate),
     currentDate: formatDate(currentDate),
