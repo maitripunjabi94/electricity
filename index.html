@@ -1,278 +1,885 @@
+
+
 <!DOCTYPE html>
+
+
 <html>
+
+
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RPV6FP5JEG"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-RPV6FP5JEG');
-  </script>
 
-  <title>Smart Consumption Tracker</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px auto;
-      max-width: 600px;
-    }
-    h2, h3 {
-      text-align: center;
-      font-weight: bold;
-    }
-    label, input, button {
-      display: block;
-      width: 100%;
-      margin: 10px 0;
-      font-size: 1rem;
-    }
-    input {
-      padding: 8px;
-      box-sizing: border-box;
-    }
-    button {
-      padding: 10px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    .output {
-      margin-top: 20px;
-      padding: 15px;
-      width: 100%;
-    }
-    .output.success {
-      color: #2e7d32;
-      background-color: #e8f5e9;
-      border: 1px solid #4caf50;
-    }
-    .output.error {
-      color: #d32f2f;
-      background-color: #ffe6e6;
-      border: 1px solid #f44336;
-    }
-    .reset-btn {
-      background-color: #f44336;
-      color: white;
-      border: none;
-      padding: 10px;
-      margin-top: 20px;
-    }
-    .reset-btn:hover {
-      background-color: #d32f2f;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 30px;
-      table-layout: fixed;
-    }
-    th, td {
-      border: 1px solid #aaa;
-      padding: 8px;
-      text-align: center;
-      word-wrap: break-word;
-    }
-    th {
-      background-color: #eee;
-    }
-    @media (max-width: 480px) {
-      body {
-        margin: 10px;
-        font-size: 14px;
-      }
-      h2, h3 {
-        font-size: 18px;
-      }
-      table {
-        font-size: 12px;
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-      }
-      th, td {
-        padding: 6px;
-        min-width: 100px;
-      }
-      .output {
-        font-size: 14px;
-      }
-    }
-  </style>
+
+<!-- Google tag (gtag.js) -->
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RPV6FP5JEG"></script>
+
+
+<script>
+
+
+window.dataLayer = window.dataLayer || [];
+
+
+function gtag(){dataLayer.push(arguments);}
+
+
+gtag('js', new Date());
+
+
+gtag('config', 'G-RPV6FP5JEG');
+
+
+</script>
+
+
+
+
+
+
+<title>Smart Consumption Tracker</title>
+
+
+<style>
+
+
+body {
+
+
+font-family: Arial, sans-serif;
+
+
+margin: 20px auto;
+
+
+max-width: 600px;
+
+
+}
+
+
+h2, h3 {
+
+
+text-align: center;
+
+
+font-weight: bold;
+
+
+}
+
+
+label, input, button {
+
+
+display: block;
+
+
+width: 100%;
+
+
+margin: 10px 0;
+
+
+font-size: 1rem;
+
+
+}
+
+
+input {
+
+
+padding: 8px;
+
+
+box-sizing: border-box;
+
+
+}
+
+
+button {
+
+
+padding: 10px;
+
+
+font-size: 1rem;
+
+
+cursor: pointer;
+
+
+}
+
+
+.output {
+
+
+margin-top: 20px;
+
+
+padding: 15px;
+
+
+width: 100%;
+
+
+}
+
+
+.output.success {
+
+
+color: #2e7d32;
+
+
+background-color: #e8f5e9;
+
+
+border: 1px solid #4caf50;
+
+
+}
+
+
+.output.error {
+
+
+color: #d32f2f;
+
+
+background-color: #ffe6e6;
+
+
+border: 1px solid #f44336;
+
+
+}
+
+
+.reset-btn {
+
+
+background-color: #f44336;
+
+
+color: white;
+
+
+border: none;
+
+
+padding: 10px;
+
+
+margin-top: 20px;
+
+
+}
+
+
+.reset-btn:hover {
+
+
+background-color: #d32f2f;
+
+
+}
+
+
+table {
+
+
+width: 100%;
+
+
+border-collapse: collapse;
+
+
+margin-top: 30px;
+
+
+table-layout: fixed;
+
+
+}
+
+
+th, td {
+
+
+border: 1px solid #aaa;
+
+
+padding: 8px;
+
+
+text-align: center;
+
+
+word-wrap: break-word;
+
+
+}
+
+
+th {
+
+
+background-color: #eee;
+
+
+}
+
+
+@media (max-width: 480px) {
+
+
+body {
+
+
+margin: 10px;
+
+
+font-size: 16px;
+
+
+}
+
+
+h2, h3 {
+
+
+font-size: 20px;
+
+
+}
+.output {
+    font-size: 16px;
+  }
+
+
+label, input, button {
+    font-size: 16px;
+  }
+
+input, button {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+
+  input[type="date"] {
+    min-width: 200px;
+  }
+
+  .output {
+    font-size: 16px;
+  }
+
+
+
+
+table {
+
+
+font-size: 14px;
+
+
+display: block;
+
+
+overflow-x: auto;
+
+
+white-space: nowrap;
+
+
+}
+
+
+th, td {
+
+
+padding: 8px;
+
+
+min-width: 100px;
+
+
+}
+
+
+.output {
+
+
+font-size: 14px;
+
+
+}
+
+
+}
+
+
+</style>
+
+
 </head>
-<body>
-  <h2>Smart Consumption Tracker</h2>
 
-  <label for="lastDate">Last Billing Date:</label>
-  <input type="date" id="lastDate">
-  
+
+<body>
+
+
+<h2>Smart Consumption Tracker</h2>
+
+
+
+
+
+
+<label for="lastDate">Last Billing Date:</label>
+
+
+<input type="date" id="lastDate">
+
+
+
+
+
+
 <label for="lastReading">Last Meter Reading:</label>
+
+
 <input type="tel" id="lastReading" inputmode="numeric" pattern="[0-9]*">
 
-  <label for="currentDate">Current Date:</label>
-  <input type="date" id="currentDate">
-  
+
+
+
+
+
+<label for="currentDate">Current Date:</label>
+
+
+<input type="date" id="currentDate">
+
+
+
+
+
+
 <label for="currentReading">Current Meter Reading:</label>
+
+
 <input type="tel" id="currentReading" inputmode="numeric" pattern="[0-9]*">
 
-  <button onclick="calculate()">Calculate</button>
-  <div class="output" id="result"></div>
 
-  <h3>Previous Record</h3>
-  <table id="historyTable">
-    <thead>
-      <tr>
-        <th>Last Billing Date</th>
-        <th>Current Date</th>
-        <th>Days</th>
-        <th>Total Consumption</th>
-        <th>Average Daily Consumption</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
 
-  <button class="reset-btn" onclick="resetHistory()">Reset History</button>
 
-  <script>
-    window.onload = function () {
-      const lastDate = localStorage.getItem("lastDate");
-      const lastReading = localStorage.getItem("lastReading");
-      if (lastDate) document.getElementById("lastDate").value = lastDate;
-      if (lastReading) document.getElementById("lastReading").value = lastReading;
-      loadHistory();
-    };
 
-    function calculate() {
-      const lastDateStr = document.getElementById("lastDate").value;
-      const currentDateStr = document.getElementById("currentDate").value;
-      const lastReading = parseFloat(document.getElementById("lastReading").value);
-      const currentReading = parseFloat(document.getElementById("currentReading").value);
-      const resultBox = document.getElementById("result");
 
-      ["lastDate", "currentDate", "lastReading", "currentReading"].forEach(id => {
-        document.getElementById(id).style.border = "";
-      });
+<button onclick="calculate()">Calculate</button>
 
-      localStorage.setItem("lastDate", lastDateStr);
-      localStorage.setItem("lastReading", document.getElementById("lastReading").value);
 
-      if (!lastDateStr || !currentDateStr || isNaN(lastReading) || isNaN(currentReading)) {
-        resultBox.className = "output error";
-        resultBox.innerText = "Please fill in all fields with valid numbers and dates.";
-        if (!lastDateStr) highlightError("lastDate");
-        if (!currentDateStr) highlightError("currentDate");
-        if (isNaN(lastReading)) highlightError("lastReading");
-        if (isNaN(currentReading)) highlightError("currentReading");
-        return;
-      }
+<div class="output" id="result"></div>
 
-      const lastDate = new Date(lastDateStr);
-      const currentDate = new Date(currentDateStr);
 
-      if (currentDate.getTime() === lastDate.getTime()) {
-        resultBox.className = "output error";
-        resultBox.innerText = "The current date cannot be the same as the last billing date.";
-        highlightError("currentDate");
-        return;
-      }
 
-      if (currentDate < lastDate) {
-        resultBox.className = "output error";
-        resultBox.innerText = "Current date must be after the last billing date.";
-        highlightError("currentDate");
-        return;
-      }
 
-      if (currentReading < lastReading) {
-        resultBox.className = "output error";
-        resultBox.innerText = "Current reading must be greater than or equal to the last reading.";
-        highlightError("currentReading");
-        return;
-      }
 
-      const days = Math.floor((currentDate - lastDate) / (1000 * 60 * 60 * 24));
-      const totalConsumption = currentReading - lastReading;
-      const dailyConsumption = (totalConsumption / days).toFixed(2);
 
-      resultBox.className = "output success";
-      resultBox.innerHTML =
-        `<div>
-          <strong>Number of Days:</strong> ${days}<br>
-          <strong>Total Consumption:</strong> ${totalConsumption} units<br>
-          <strong>Average Daily Consumption:</strong> ${dailyConsumption} units/day
-        </div>`;
+<h3>Previous Record</h3>
 
-      gtag('event', 'calculate_clicked', {
-        last_reading: lastReading,
-        last_date: lastDateStr,
-        current_reading: currentReading,
-        current_date: currentDateStr
-      });
 
-      const entry = {
-        lastDate: formatDate(lastDate),
-        currentDate: formatDate(currentDate),
-        days: days,
-        total: totalConsumption,
-        daily: dailyConsumption
-      };
+<table id="historyTable">
 
-      let history = JSON.parse(localStorage.getItem("calcHistory")) || [];
-      history = history.filter(item => !(item.lastDate === entry.lastDate && item.currentDate === entry.currentDate));
-      history.push(entry);
-      localStorage.setItem("calcHistory", JSON.stringify(history));
-      updateTable(history);
-    }
 
-    function highlightError(fieldId) {
-      document.getElementById(fieldId).style.border = "2px solid #f44336";
-    }
+<thead>
 
-    function loadHistory() {
-      let history = JSON.parse(localStorage.getItem("calcHistory")) || [];
-      updateTable(history);
-    }
 
-    function updateTable(history) {
-      const tableBody = document.getElementById("historyTable").querySelector("tbody");
-      tableBody.innerHTML = "";
+<tr>
 
-      history.forEach(entry => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${entry.lastDate}</td>
-          <td>${entry.currentDate}</td>
-          <td>${entry.days}</td>
-          <td>${entry.total}</td>
-          <td>${entry.daily}</td>
-        `;
-        tableBody.appendChild(row);
-      });
-    }
 
-    function formatDate(date) {
-      const day = String(date.getDate()).padStart(2, '0');
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const year = date.getFullYear().toString().slice(-2);
-      return `${day}-${month}-${year}`;
-    }
+<th>Last Billing Date</th>
 
-    function resetHistory() {
-      localStorage.removeItem("calcHistory");
-      localStorage.removeItem("lastDate");
-      localStorage.removeItem("lastReading");
-      document.getElementById("historyTable").querySelector("tbody").innerHTML = "";
-      document.getElementById("result").innerHTML = "";
-      document.getElementById("result").className = "output";
-      document.getElementById("lastDate").value = "";
-      document.getElementById("lastReading").value = "";
-      document.getElementById("currentDate").value = "";
-      document.getElementById("currentReading").value = "";
-      ["lastDate", "currentDate", "lastReading", "currentReading"].forEach(id => {
-        document.getElementById(id).style.border = "";
-      });
-    }
-  </script>
+
+<th>Current Date</th>
+
+
+<th>Days</th>
+
+
+<th>Total Units</th>
+
+
+<th>Average Daily Units</th>
+
+
+</tr>
+
+
+</thead>
+
+
+<tbody></tbody>
+
+
+</table>
+
+
+
+
+
+
+<button class="reset-btn" onclick="resetHistory()">Reset History</button>
+
+
+
+
+
+
+<script>
+
+
+window.onload = function () {
+
+
+const lastDate = localStorage.getItem("lastDate");
+
+
+const lastReading = localStorage.getItem("lastReading");
+
+
+if (lastDate) document.getElementById("lastDate").value = lastDate;
+
+
+if (lastReading) document.getElementById("lastReading").value = lastReading;
+
+
+loadHistory();
+
+
+};
+
+
+
+
+
+
+function calculate() {
+
+
+const lastDateStr = document.getElementById("lastDate").value;
+
+
+const currentDateStr = document.getElementById("currentDate").value;
+
+
+const lastReading = parseFloat(document.getElementById("lastReading").value);
+
+
+const currentReading = parseFloat(document.getElementById("currentReading").value);
+
+
+const resultBox = document.getElementById("result");
+
+
+
+
+
+
+["lastDate", "currentDate", "lastReading", "currentReading"].forEach(id => {
+
+
+document.getElementById(id).style.border = "";
+
+
+});
+
+
+
+
+
+
+localStorage.setItem("lastDate", lastDateStr);
+
+
+localStorage.setItem("lastReading", document.getElementById("lastReading").value);
+
+
+
+
+
+
+if (!lastDateStr || !currentDateStr || isNaN(lastReading) || isNaN(currentReading)) {
+
+
+resultBox.className = "output error";
+
+
+resultBox.innerText = "Please fill in all fields with valid numbers and dates.";
+
+
+if (!lastDateStr) highlightError("lastDate");
+
+
+if (!currentDateStr) highlightError("currentDate");
+
+
+if (isNaN(lastReading)) highlightError("lastReading");
+
+
+if (isNaN(currentReading)) highlightError("currentReading");
+
+
+return;
+
+
+}
+
+
+
+
+
+
+const lastDate = new Date(lastDateStr);
+
+
+const currentDate = new Date(currentDateStr);
+
+
+
+
+
+
+if (currentDate.getTime() === lastDate.getTime()) {
+
+
+resultBox.className = "output error";
+
+
+resultBox.innerText = "The current date cannot be the same as the last billing date.";
+
+
+highlightError("currentDate");
+
+
+return;
+
+
+}
+
+
+
+
+
+
+if (currentDate < lastDate) {
+
+
+resultBox.className = "output error";
+
+
+resultBox.innerText = "Current date must be after the last billing date.";
+
+
+highlightError("currentDate");
+
+
+return;
+
+
+}
+
+
+
+
+
+
+if (currentReading < lastReading) {
+
+
+resultBox.className = "output error";
+
+
+resultBox.innerText = "Current reading must be greater than or equal to the last reading.";
+
+
+highlightError("currentReading");
+
+
+return;
+
+
+}
+
+
+
+
+
+
+const days = Math.floor((currentDate - lastDate) / (1000 * 60 * 60 * 24));
+
+
+const totalConsumption = currentReading - lastReading;
+
+
+const dailyConsumption = (totalConsumption / days).toFixed(2);
+
+
+
+
+
+
+resultBox.className = "output success";
+
+
+resultBox.innerHTML =
+
+
+`<div>
+
+
+<strong>Number of Days:</strong> ${days}<br>
+
+
+<strong>Total Units:</strong> ${totalConsumption} kWh<br>
+
+
+<strong>Average Daily Units:</strong> ${dailyConsumption} kWh/day
+
+
+</div>`;
+
+
+
+
+
+
+gtag('event', 'calculate_clicked', {
+
+
+last_reading: lastReading,
+
+
+last_date: lastDateStr,
+
+
+current_reading: currentReading,
+
+
+current_date: currentDateStr
+
+
+});
+
+
+
+
+
+
+const entry = {
+
+
+lastDate: formatDate(lastDate),
+
+
+currentDate: formatDate(currentDate),
+
+
+days: days,
+
+
+total: totalConsumption,
+
+
+daily: dailyConsumption
+
+
+};
+
+
+
+
+
+
+let history = JSON.parse(localStorage.getItem("calcHistory")) || [];
+
+
+history = history.filter(item => !(item.lastDate === entry.lastDate && item.currentDate === entry.currentDate));
+
+
+history.push(entry);
+
+
+localStorage.setItem("calcHistory", JSON.stringify(history));
+
+
+updateTable(history);
+
+
+}
+
+
+
+
+
+
+function highlightError(fieldId) {
+
+
+document.getElementById(fieldId).style.border = "2px solid #f44336";
+
+
+}
+
+
+
+
+
+
+function loadHistory() {
+
+
+let history = JSON.parse(localStorage.getItem("calcHistory")) || [];
+
+
+updateTable(history);
+
+
+}
+
+
+
+
+
+
+function updateTable(history) {
+
+
+const tableBody = document.getElementById("historyTable").querySelector("tbody");
+
+
+tableBody.innerHTML = "";
+
+
+
+
+
+
+history.forEach(entry => {
+
+
+const row = document.createElement("tr");
+
+
+row.innerHTML = `
+
+
+<td>${entry.lastDate}</td>
+
+
+<td>${entry.currentDate}</td>
+
+
+<td>${entry.days}</td>
+
+
+<td>${entry.total}</td>
+
+
+<td>${entry.daily}</td>
+
+
+`;
+
+
+tableBody.appendChild(row);
+
+
+});
+
+
+}
+
+
+
+
+
+
+function formatDate(date) {
+
+
+const day = String(date.getDate()).padStart(2, '0');
+
+
+const month = String(date.getMonth() + 1).padStart(2, '0');
+
+
+const year = date.getFullYear().toString().slice(-2);
+
+
+return `${day}-${month}-${year}`;
+
+
+}
+
+
+
+
+
+
+function resetHistory() {
+
+
+localStorage.removeItem("calcHistory");
+
+
+localStorage.removeItem("lastDate");
+
+
+localStorage.removeItem("lastReading");
+
+
+document.getElementById("historyTable").querySelector("tbody").innerHTML = "";
+
+
+document.getElementById("result").innerHTML = "";
+
+
+document.getElementById("result").className = "output";
+
+
+document.getElementById("lastDate").value = "";
+
+
+document.getElementById("lastReading").value = "";
+
+
+document.getElementById("currentDate").value = "";
+
+
+document.getElementById("currentReading").value = "";
+
+
+["lastDate", "currentDate", "lastReading", "currentReading"].forEach(id => {
+
+
+document.getElementById(id).style.border = "";
+
+
+});
+
+
+}
+
+
+</script>
+
+
 </body>
+
 </html>
